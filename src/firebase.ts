@@ -4,7 +4,7 @@ import { getAuth } from 'firebase/auth';
 
 // apiKey: 'AIzaSyAVsAlunJrLbfypl8o_sKN5Lsj1XfKBqGg',
 const firebaseConfig = {
-  apiKey: 'AIzaSyAVsAlunJrLbfypl8o_sKN5Lsj1XfKBqGg',
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: 'textwiz-a8d79.firebaseapp.com',
   projectId: 'textwiz-a8d79',
   storageBucket: 'textwiz-a8d79.appspot.com',

@@ -194,7 +194,7 @@ const WorkArea = () => {
       try {
         console.log(inputText);
         const response = await axios.post(
-          'http://localhost:5000/grammarcheck',
+          'http://localhost:5000/correctedtext',
           {
             text: inputText,
           }
@@ -219,24 +219,6 @@ const WorkArea = () => {
         );
         console.log(response.data.corrected_text);
         setOutputText(response.data.corrected_text);
-      } catch (error) {
-        console.error('Error while checking spelling:', error);
-      }
-    }
-  };
-
-  const handleCorrectPunctuation = async () => {
-    if (user) {
-      try {
-        console.log(inputText);
-        const response = await axios.post(
-          'http://localhost:5000/correctpunctuation',
-          {
-            text: inputText,
-          }
-        );
-        console.log(response.data.correctpunctuation);
-        setOutputText(response.data.correctpunctuation);
       } catch (error) {
         console.error('Error while checking spelling:', error);
       }
@@ -456,12 +438,6 @@ const WorkArea = () => {
                   onClick={handleCorrectedText}
                 >
                   Spelling Checker
-                </Button>
-                <Button
-                  className={`${randomColorGenerator(0, 39).toString()}`}
-                  onClick={handleCorrectPunctuation}
-                >
-                  Correct Punctuation
                 </Button>
               </CardContent>
             </Card>
