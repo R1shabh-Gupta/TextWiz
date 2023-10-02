@@ -14,7 +14,11 @@ import { Textarea } from './ui/textarea';
 import { Signup } from './Signup';
 import { Login } from './Login';
 
-const WorkArea = () => {
+type appProps = {
+  onIsLoggedIn: (value: boolean) => void;
+};
+
+const WorkArea = ({ onIsLoggedIn }: appProps) => {
   const auth = getAuth();
   const user = auth.currentUser;
   const [inputText, setInputText] = useState('');
@@ -399,8 +403,8 @@ const WorkArea = () => {
                       Your Experience!
                     </p>
                     <div className="flex gap-4 flex-wrap items-center justify-center">
-                      <Login />
-                      <Signup type="default" />
+                      <Login onIsLoggedIn={onIsLoggedIn} />
+                      <Signup type="default" onIsLoggedIn={onIsLoggedIn} />
                     </div>
                   </div>
                 </div>

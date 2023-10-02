@@ -20,7 +20,7 @@ function App() {
       <Navbar onIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Router>
         <Routes>
-          <Route path="/" element={<WorkArea />} />
+          <Route path="/" element={<WorkArea onIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </Router>
     </ThemeProvider>
