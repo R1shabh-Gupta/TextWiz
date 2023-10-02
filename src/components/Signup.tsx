@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 type appProps = {
-  type: string;
+  type: 'default';
   onIsLoggedIn: (value: boolean) => void;
 };
 
