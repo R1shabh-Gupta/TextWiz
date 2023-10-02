@@ -4,6 +4,13 @@ import { Signup } from './Signup';
 import { ModeToggle } from './mode-toggle';
 import { NavigationMenu } from './ui/navigation-menu';
 import { Button } from './ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 type appProps = {
   onIsLoggedIn: (value: boolean) => void;
@@ -31,12 +38,78 @@ const Navbar = ({ onIsLoggedIn, isLoggedIn }: appProps) => {
         <h1 className="font-bold text-xl antialiased">TextWiz.</h1>
 
         {/* menu */}
-        <div className="flex gap-5">
+        {/* mobile */}
+        <div className="md:hidden flex gap-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-align-right"
+              >
+                <line x1="21" x2="3" y1="6" y2="6" />
+                <line x1="21" x2="9" y1="12" y2="12" />
+                <line x1="21" x2="7" y1="18" y2="18" />
+              </svg>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {!isLoggedIn ? (
+                <>
+                  <DropdownMenuLabel>
+                    <Login onIsLoggedIn={onIsLoggedIn} isbutton={false} />
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel>
+                    <Signup
+                      type="default"
+                      onIsLoggedIn={onIsLoggedIn}
+                      isbutton={false}
+                    />
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel>
+                    <a
+                      href="https://github.com/R1shabh-Gupta/TextWiz"
+                      target="_blank"
+                    >
+                      GitHub
+                    </a>
+                  </DropdownMenuLabel>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuLabel>
+                    Welcome! {user?.displayName}
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel>
+                    <p onClick={handleSignOut}>Sign Out</p>
+                  </DropdownMenuLabel>
+                </>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {/* dark mode */}
+          <ModeToggle />
+        </div>
+        {/* large screen */}
+        <div className="md:flex gap-5 hidden">
           <NavigationMenu className="flex gap-2">
             {!isLoggedIn ? (
               <div className="flex gap-4 flex-wrap justify-around">
-                <Login onIsLoggedIn={onIsLoggedIn} />
-                <Signup type="default" onIsLoggedIn={onIsLoggedIn} />
+                <Login onIsLoggedIn={onIsLoggedIn} isbutton={true} />
+                <Signup
+                  type="default"
+                  onIsLoggedIn={onIsLoggedIn}
+                  isbutton={true}
+                />
                 <Button variant="outline" size="icon">
                   <a
                     href="https://github.com/R1shabh-Gupta/TextWiz"

@@ -16,9 +16,10 @@ import { Label } from '@/components/ui/label';
 
 type appProps = {
   onIsLoggedIn: (value: boolean) => void;
+  isbutton: boolean;
 };
 
-export function Login({ onIsLoggedIn }: appProps) {
+export function Login({ onIsLoggedIn, isbutton = true }: appProps) {
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -67,7 +68,7 @@ export function Login({ onIsLoggedIn }: appProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Log In</Button>
+        {isbutton ? <Button>Log In</Button> : <p>Log In</p>}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

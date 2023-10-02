@@ -166,7 +166,6 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
     if (user) {
       try {
         setIsLoading(true);
-        console.log('post');
         const response = await axios.post(
           'https://r1shabh.pythonanywhere.com/summarize',
           {
@@ -189,6 +188,7 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
   const handleKeyword = async () => {
     if (user) {
       try {
+        setIsLoading(true);
         const response = await axios.post(
           'https://r1shabh.pythonanywhere.com/keyword',
           {
@@ -200,6 +200,7 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
             },
           }
         );
+        setIsLoading(false);
         console.log(response.data);
         const result = arrayToBulletPoints(response.data.keywords);
 
@@ -409,7 +410,7 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
 
           {/* AI */}
 
-          <div className="relative mb-8 md:mb-0">
+          <div className="relative mb-16 md:mb-0">
             {/* Is user logged in? */}
             {!user && (
               <div className="absolute bg-gray-200 z-10 h-full w-full flex items-center justify-center rounded-md bg-opacity-40 backdrop-filter backdrop-blur-md dark:bg-gray-600 dark:bg-opacity-40">
@@ -420,8 +421,12 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
                       Your Experience!
                     </p>
                     <div className="flex gap-4 flex-wrap items-center justify-center">
-                      <Login onIsLoggedIn={onIsLoggedIn} />
-                      <Signup type="default" onIsLoggedIn={onIsLoggedIn} />
+                      <Login onIsLoggedIn={onIsLoggedIn} isbutton={true} />
+                      <Signup
+                        type="default"
+                        onIsLoggedIn={onIsLoggedIn}
+                        isbutton={true}
+                      />
                     </div>
                   </div>
                 </div>

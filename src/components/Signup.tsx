@@ -17,9 +17,10 @@ import { Label } from '@/components/ui/label';
 type appProps = {
   type: 'default';
   onIsLoggedIn: (value: boolean) => void;
+  isbutton: boolean;
 };
 
-export function Signup({ type, onIsLoggedIn }: appProps) {
+export function Signup({ type, onIsLoggedIn, isbutton = true }: appProps) {
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -55,7 +56,11 @@ export function Signup({ type, onIsLoggedIn }: appProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={`${type ? type : 'outline'}`}>Sign Up</Button>
+        {isbutton ? (
+          <Button variant={`${type ? type : 'outline'}`}>Sign Up</Button>
+        ) : (
+          <p>Sign Up</p>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
