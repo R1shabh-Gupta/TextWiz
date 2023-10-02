@@ -4,9 +4,13 @@ import { Signup } from './Signup';
 import { ModeToggle } from './mode-toggle';
 import { NavigationMenu } from './ui/navigation-menu';
 import { Button } from './ui/button';
-import { Link } from 'react-router-dom';
 
-const Navbar = ({ onIsLoggedIn, isLoggedIn }) => {
+type appProps = {
+  onIsLoggedIn: (value: boolean) => void;
+  isLoggedIn: boolean;
+};
+
+const Navbar = ({ onIsLoggedIn, isLoggedIn }: appProps) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -32,7 +36,7 @@ const Navbar = ({ onIsLoggedIn, isLoggedIn }) => {
             {!isLoggedIn ? (
               <div className="flex gap-4 flex-wrap justify-around">
                 <Login onIsLoggedIn={onIsLoggedIn} />
-                <Signup type="" onIsLoggedIn={onIsLoggedIn} />
+                <Signup type="default" onIsLoggedIn={onIsLoggedIn} />
                 <Button variant="outline" size="icon">
                   <a
                     href="https://github.com/R1shabh-Gupta/TextWiz"

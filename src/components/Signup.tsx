@@ -14,7 +14,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-export function Signup({ type, onIsLoggedIn }) {
+type appProps = {
+  type: string;
+  onIsLoggedIn: (value: boolean) => void;
+};
+
+export function Signup({ type, onIsLoggedIn }: appProps) {
   const [values, setValues] = useState({
     name: '',
     email: '',
