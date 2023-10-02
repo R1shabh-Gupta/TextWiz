@@ -35,7 +35,9 @@ const Navbar = ({ onIsLoggedIn, isLoggedIn }: appProps) => {
   return (
     <>
       <nav className="flex justify-between py-2 px-10 items-center bg-slate-50 dark:bg-[#0a0a0b]">
-        <h1 className="font-bold text-xl antialiased">TextWiz.</h1>
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-sky-400 to-blue-500 dark:bg-gradient-to-r dark:from-white dark:via-sky-500 dark:to-sky-500 bg-clip-text text-transparent">
+          TextWiz.
+        </h1>
 
         {/* menu */}
         {/* mobile */}
