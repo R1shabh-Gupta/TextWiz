@@ -166,9 +166,18 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
     if (user) {
       try {
         setIsLoading(true);
-        const response = await axios.post('http://localhost:5000/summarize', {
-          text: inputText,
-        });
+        console.log('post');
+        const response = await axios.post(
+          'https://r1shabh.pythonanywhere.com/summarize',
+          {
+            text: inputText,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
         setIsLoading(false);
         setOutputText(response.data.summary);
       } catch (error) {
@@ -180,9 +189,17 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
   const handleKeyword = async () => {
     if (user) {
       try {
-        const response = await axios.post('http://localhost:5000/keyword', {
-          text: inputText,
-        });
+        const response = await axios.post(
+          'https://r1shabh.pythonanywhere.com/keyword',
+          {
+            text: inputText,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
         console.log(response.data);
         const result = arrayToBulletPoints(response.data.keywords);
 
