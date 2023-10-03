@@ -211,23 +211,23 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
     }
   };
 
-  const handleGrammerCheck = async () => {
-    if (user) {
-      try {
-        console.log(inputText);
-        const response = await axios.post(
-          'http://localhost:5000/correctedtext',
-          {
-            text: inputText,
-          }
-        );
-        console.log(response.data.grammar_errors);
-        setOutputText(response.data.grammar_errors);
-      } catch (error) {
-        console.error('Error Grammer checking:', error);
-      }
-    }
-  };
+  // const handleGrammerCheck = async () => {
+  //   if (user) {
+  //     try {
+  //       console.log(inputText);
+  //       const response = await axios.post(
+  //         'http://localhost:5000/correctedtext',
+  //         {
+  //           text: inputText,
+  //         }
+  //       );
+  //       console.log(response.data.grammar_errors);
+  //       setOutputText(response.data.grammar_errors);
+  //     } catch (error) {
+  //       console.error('Error Grammer checking:', error);
+  //     }
+  //   }
+  // };
 
   const handleCorrectedText = async () => {
     if (user) {
@@ -453,18 +453,12 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
                 >
                   keyword Extract
                 </Button>
-                <Button
-                  className={`${randomColorGenerator(0, 39).toString()}`}
-                  onClick={handleGrammerCheck}
-                >
-                  Check Grammer
-                </Button>
-                <Button
+                {/* <Button
                   className={`${randomColorGenerator(0, 39).toString()}`}
                   onClick={handleCorrectedText}
                 >
                   Spelling Checker
-                </Button>
+                </Button> */}
               </CardContent>
             </Card>
           </div>
