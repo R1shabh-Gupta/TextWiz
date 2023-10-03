@@ -229,23 +229,23 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
   //   }
   // };
 
-  const handleCorrectedText = async () => {
-    if (user) {
-      try {
-        console.log(inputText);
-        const response = await axios.post(
-          'http://localhost:5000/correctedtext',
-          {
-            text: inputText,
-          }
-        );
-        console.log(response.data.corrected_text);
-        setOutputText(response.data.corrected_text);
-      } catch (error) {
-        console.error('Error while checking spelling:', error);
-      }
-    }
-  };
+  // const handleCorrectedText = async () => {
+  //   if (user) {
+  //     try {
+  //       console.log(inputText);
+  //       const response = await axios.post(
+  //         'http://localhost:5000/correctedtext',
+  //         {
+  //           text: inputText,
+  //         }
+  //       );
+  //       console.log(response.data.corrected_text);
+  //       setOutputText(response.data.corrected_text);
+  //     } catch (error) {
+  //       console.error('Error while checking spelling:', error);
+  //     }
+  //   }
+  // };
 
   return (
     <>
