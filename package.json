@@ -32,7 +32,8 @@
     "react-router-dom": "^6.16.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-patterns": "^0.1.2"
+    "tailwindcss-patterns": "^0.1.2",
+    "tesseract.js": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^20.6.4",
