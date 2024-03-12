@@ -1,11 +1,8 @@
 import { useState } from "react";
 import AITextTransformationToolbox from "./AITextTransformationToolbox";
-import CopyButton from "./CopyButton";
-import Loader from "./Loader";
+import InputTextarea from "./InputTextarea";
 import NonAITextTransformationToolbox from "./NonAITextTransformationToolbox";
-import OCRTextExtractor from "./OCRTextExtractor";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import OutputTextarea from "./OutputTextarea";
 
 type appProps = {
   onIsLoggedIn: (value: boolean) => void;
@@ -72,49 +69,22 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
         {/* TextAreas */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 w-[80%]">
           {/* Input Textarea */}
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between mb-2">
-              <Label htmlFor="message" className="text-lg">
-                Input Text
-              </Label>
-              <OCRTextExtractor setInputText={setInputText} />
-            </div>
-            <Textarea
-              className="resize-y placeholder:italic placeholder:text-slate-400"
-              placeholder="Type your message here..."
-              id="message"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-            />
-          </div>
+          <InputTextarea inputText={inputText} setInputText={setInputText} />
 
           {/* Output Textarea */}
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="message" className="text-lg">
-                Output Text
-              </Label>
-              <CopyButton outputText={outputText} />
-            </div>
-            <div className="relative">
-              {isLoading && <Loader />}
-              <Textarea
-                className="top-0 placeholder:italic placeholder:text-slate-400"
-                placeholder="Output will be displayed here :)"
-                id="message"
-                value={outputText}
-                onChange={() => setOutputText(inputText)}
-              />
-            </div>
-          </div>
+          <OutputTextarea
+            outputText={outputText}
+            isLoading={isLoading}
+            setOutputText={setOutputText}
+          />
         </div>
 
         {/* Toolboxes */}
         <h2 className="mt-10 text-3xl font-semibold tracking-tight text-center transition-colors">
-          Text{" "}
+          Text
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
             Transformation
-          </span>{" "}
+          </span>
           Toolbox
         </h2>
 
