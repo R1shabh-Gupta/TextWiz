@@ -33,7 +33,7 @@ const AITextTransformationToolbox = ({
       try {
         setIsLoading(true);
         const response = await axios.post(
-          "http://r1shabh.pythonanywhere.com/grammarChecker",
+          "https://r1shabh.pythonanywhere.com/grammarChecker",
           {
             text: inputText,
           },
