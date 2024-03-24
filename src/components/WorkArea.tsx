@@ -82,7 +82,7 @@ const WorkArea = ({ onIsLoggedIn }: appProps) => {
         {/* Toolboxes */}
         <h2 className="mt-10 text-3xl font-semibold tracking-tight text-center transition-colors">
           Text
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          <span className="mx-1 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
             Transformation
           </span>
           Toolbox

@@ -68,6 +68,12 @@ const NonAITextTransformationToolbox = ({
     setOutputText(() => finalAns);
   };
 
+  function removeExtraSpaces(text: string) {
+    const regex = /\s+/g;
+    const finalAns = text.replace(regex, " ");
+    setOutputText(() => finalAns);
+  }
+
   return (
     <>
       <Card>
@@ -114,6 +120,13 @@ const NonAITextTransformationToolbox = ({
             onClick={() => toAlternateCase(inputText)}
           >
             aLtErNaTe cAsE
+          </Button>
+
+          <Button
+            className={`${randomColorGenerator(0, 39).toString()}`}
+            onClick={() => removeExtraSpaces(inputText)}
+          >
+            Whitespaces Remover
           </Button>
         </CardContent>
       </Card>
