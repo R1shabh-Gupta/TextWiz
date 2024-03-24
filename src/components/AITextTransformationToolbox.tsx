@@ -27,34 +27,13 @@ const AITextTransformationToolbox = ({
   const auth = getAuth();
   const user = auth.currentUser;
 
-  function arrayToBulletPoints(inputArray: Array<string>) {
-    const bulletPointArray = inputArray.map((item) => {
-      if (
-        item === "\n" ||
-        item === "\n\n" ||
-        item === "\n\n\n" ||
-        item === "\n\n\n\n" ||
-        item === "\n\n\n\n\n" ||
-        item === "\n\n\n\n\n\n\n" ||
-        item === "\n\n\n\n\n\n\n\n"
-      ) {
-        return;
-      }
-      // Split the element into words and convert to bullet points
-      const words = item.split(" ");
-      return words.map((word) => `• ${word}`).join(" ");
-    });
-
-    return bulletPointArray.join("\n");
-  }
-
   // backend
-  const handleSummarize = async () => {
+  const handleCheckGrammmar = async () => {
     if (user) {
       try {
         setIsLoading(true);
         const response = await axios.post(
-          "https://r1shabh.pythonanywhere.com/summarize",
+          "http://r1shabh.pythonanywhere.com/grammarChecker",
           {
             text: inputText,
           },
@@ -65,38 +44,13 @@ const AITextTransformationToolbox = ({
           }
         );
         setIsLoading(false);
-        setOutputText(response.data.summary);
+        setOutputText(response.data.text);
       } catch (error) {
         console.error("Error summarizing text:", error);
       }
     }
   };
 
-  const handleKeyword = async () => {
-    if (user) {
-      try {
-        setIsLoading(true);
-        const response = await axios.post(
-          "https://r1shabh.pythonanywhere.com/keyword",
-          {
-            text: inputText,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        setIsLoading(false);
-        console.log(response.data);
-        const result = arrayToBulletPoints(response.data.keywords);
-
-        setOutputText(result);
-      } catch (error) {
-        console.error("Error extracting keywords:", error);
-      }
-    }
-  };
   return (
     <div className="relative mb-16 md:mb-0">
       {/* Is user logged in? */}
@@ -131,15 +85,9 @@ const AITextTransformationToolbox = ({
         <CardContent className="flex flex-wrap mt-2 mb-2 gap-x-8 gap-y-4">
           <Button
             className={`${randomColorGenerator(0, 39).toString()}`}
-            onClick={handleSummarize}
+            onClick={handleCheckGrammmar}
           >
-            Text Summarization
-          </Button>
-          <Button
-            className={`${randomColorGenerator(0, 39).toString()}`}
-            onClick={handleKeyword}
-          >
-            keyword Extract
+            Check Grammmar
           </Button>
         </CardContent>
       </Card>
