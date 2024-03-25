@@ -46,7 +46,30 @@ const AITextTransformationToolbox = ({
         setIsLoading(false);
         setOutputText(response.data.text);
       } catch (error) {
-        console.error("Error summarizing text:", error);
+        console.error("Error:", error);
+      }
+    }
+  };
+
+  const handleCheckSpelling = async () => {
+    if (user) {
+      try {
+        setIsLoading(true);
+        const response = await axios.post(
+          "https://r1shabh.pythonanywhere.com/spellChecker",
+          {
+            text: inputText,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setIsLoading(false);
+        setOutputText(response.data.text);
+      } catch (error) {
+        console.error("Error:", error);
       }
     }
   };
@@ -88,6 +111,12 @@ const AITextTransformationToolbox = ({
             onClick={handleCheckGrammmar}
           >
             Check Grammmar
+          </Button>
+          <Button
+            className={`${randomColorGenerator(0, 39).toString()}`}
+            onClick={handleCheckSpelling}
+          >
+            Check Spelling
           </Button>
         </CardContent>
       </Card>
